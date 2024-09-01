@@ -4,30 +4,21 @@
 #include "random.h"
 #include <time.h> 
 
-void rand_string(char *s, size_t size)
-{
-    for(int i = 0; i < size; i++)
-    {
-        s[i] = randchar();
-        s[size] = '\0';
-    }
-}
-
-char* rand_string_alloc(size_t size)
-{
-     char *s = malloc(size + 1);
-    if (s) 
-    {
-        rand_string(s, size);
-    }
-    return s;
-}
+char randchar();
 
 int main()
 {
-    srand(time(0)); //Starting random num generator
-    char* randomWord = rand_string_alloc(7); //Create 7 letter word
-    printf("Test String is %s\n", randomWord);
-    free(randomWord);
-    return 0;
+	int a;
+
+	/* seed the randomizer */
+	srand( (unsigned)time(NULL) );
+
+	printf("Today's random word: ");
+	for(a=0;a<7;a++)
+    {
+		putchar( randchar() );
+    }
+	putchar('\n');
+
+	return(0);
 }
